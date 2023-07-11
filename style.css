@@ -1,3 +1,85 @@
-.letsDoIt{
-    color: brown;
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    height: 60px;
+    background-color: rgb(187, 227, 241);
+}
+
+.logo{
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.nav-items > ul{
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-items > ul > li{
+    padding-top: 5px;
+    padding-right: 20px;
+}
+
+.res-card{
+    width: 200px;
+    height: 300px;
+    background-color: rgb(231, 223, 223);
+    margin: 10px 10px;
+}
+
+.res-card:hover{
+    /* border: 1px solid white; */
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.search{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-name{
+    text-align: center;
+    margin-top: -15px;
+    padding: 0px;
+}
+
+.res-img-div{
+    padding-left: 8px;
+    width: 180px;
+    height: 150px;
+    /* border: 1px solid black; */
+    margin-top: -6px;
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+.res-info-div{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: -10px;
+}
+
+.res-menu-div{
+    margin-top: -10px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.res-img{
+    width: 188px;
+    height: 150px;
+    margin-left: -8px;
+}
+
+.res-container{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }
