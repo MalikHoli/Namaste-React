@@ -1,0 +1,18 @@
+# Parcel
+- Dev Build
+- Local Server
+- HMR (Hot Module Replacement) (The ability to refresh the browser when we save the code)
+- HMR is done using File Watching Algorithm - written in C++
+- Caching - Faster Builds
+- Image optimization
+- Minification
+- Bundling
+- Compressing
+- Consistent Hashing
+- Code Splitting
+- Differential Bunding (Ability to support older browers and other devices)
+- Diagnostic
+- Eror Handling
+- Ability to host on HTTPs
+- Tree Shaking (Remove unused code)
+- Different dev and prod bundles

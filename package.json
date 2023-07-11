@@ -1,0 +1,29 @@
+{
+  "name": "fundamentals-of-react",
+  "version": "1.0.0",
+  "description": "This folder has covered the fundamentals of not only react but also web developments",
+  "main": "App.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MalikHoli/Namaste-React.git"
+  },
+  "author": "Mallikarjun Holikatti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MalikHoli/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/MalikHoli/Namaste-React#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
