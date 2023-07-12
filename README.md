@@ -46,3 +46,16 @@ package-lock.json has information about each and every dependancy in node_module
 
 We can add "browserslist" object in package.json to tell server what versions of browsers the project should be definitly compatible with
 refer to browserslist.dev to get more information
+
+
+# CORS
+- You may have encountered this error
+- CORS stands for "cross origin resourse sharing"
+- consider origin as any website domain/domain:port/subdomain
+- cross origin word represnts communication between different domain/domain:port/subdomain
+- Note that when you create server then by default you can share its resourses only if request comes from that server itself
+- example of above statement is : when you setup express.js server and host static files and then from same port you access resource and GET/POST methoda also made from same port hence you never encountered such error
+- once you set up react-dev which was running on different port (origin) and tries to make request to this express.js port you would have get CORS
+- this happens because actually executing POST/GET... methods browser sends a preflight request to server and if it doesn't find "Access-Control-Allow-Origin" header in the response then it basically gives this error
+- Hence to resolve this we use cors package help in express.js and set it in the middleware which then sets the value by default "*" to "Access-Control-Allow-Origin" in response header
+- "*" means all origins allowed to access the resourse from this server otherwise you can also provide the origin specifically in case you want it to restrict
