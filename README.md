@@ -15,7 +15,7 @@
 # Export declarations are not subject to temporal dead zone rules. You can declare that the module exports X before the name X itself is declared.
 export { x };
 const x = 1;
-This works, because `export` is only a declaration, but doesn't utilize the value of `x`.
+This works, because export is only a declaration, but doesn't utilize the value of x.
 
 # React Hooks
 - At the end of the day it is just a javascript function given to us by React (it has some superpowers) - written by Meta developers
