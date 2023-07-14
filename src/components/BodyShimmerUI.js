@@ -1,0 +1,23 @@
+const BodyShimmerUI = () => {
+  return(
+  <>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+    <div className="shimmer-card"></div>
+  </>
+  )
+};
+
+export default BodyShimmerUI;

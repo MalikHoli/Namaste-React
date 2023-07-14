@@ -1,75 +1,98 @@
 import RestaurantCard from "./RestaurantCard";
-import importrestaurantList from "../utils/mockData";
-import { useState } from "react";
+import BodyShimmerUI from "./BodyShimmerUI";
+import { useState, useEffect } from "react";
 
 const Body = () => {
-  // Note that when you use normal variables then yes bases on onClick the variable is updating but not the UI
-  // To solve this problem we need react powered variable know as state variables
-  /*** 
-  let restaurantList2 = [
-    {
-      id: 1,
-      name: "Love Birds",
-      cuisine: "Biryani,South Indian,Asian",
-      rate: 4.1,
-      DeliveryTime: 30,
-      costForTwo: 500,
-    },
-    {
-      id: 2,
-      name: "Benni Dosa",
-      cuisine: "Chinese,North Indian,Asian",
-      rate: 4.4,
-      DeliveryTime: 60,
-      costForTwo: 700,
-    },
-    {
-      id: 3,
-      name: "Jogeshwari",
-      cuisine: "South Indian,Idali,Dosa",
-      rate: 3.6,
-      DeliveryTime: 10,
-      costForTwo: 1500,
-    },
-    {
-      id: 4,
-      name: "KFC",
-      cuisine: "Mainly Non veg",
-      rate: 3.8,
-      DeliveryTime: 60,
-      costForTwo: 1500,
-    },
-    {
-      id: 5,
-      name: "Rohit Wadewale",
-      cuisine: "Evening Snacks",
-      rate: 4.1,
-      DeliveryTime: 10,
-      costForTwo: 150,
-    },
-  ];
-  ***/
+  const [restaurantList, setrestaurantList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredrestaurantList, setfilteredrestaurantList] = useState([]);
 
-  // React equivalent state variable for above normal variable (go through README for more information)
-  const [restaurantList2, setRestaurantList2] = useState(importrestaurantList);
+  // We can show the cards info dynamically using below 2 approaches:
+  // 1. Page loads --> call the API and once data is received --> render the component and display
+  // 2. page loads --> components render --> Then call API --> once data is received then render the component again
+
+  // useEffect will be called when the component renders (page loads --> components render --> This triggers the useEffect --> once data is received then component will rerender as state is changed)
+  useEffect(() => {
+    fetchRestaurantList();
+  }, []);
+
+  const fetchRestaurantList = async () => {
+    const data = await fetch(
+      // fetch API is the superpower given by browser to JS engine
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING"
+    );
+    const fetchedRestaurants = await data.json();
+    setfilteredrestaurantList(fetchedRestaurants?.data?.cards[2]?.data?.data?.cards)
+    setrestaurantList(fetchedRestaurants?.data?.cards[2]?.data?.data?.cards); //?. is optional chaining - Explore about this
+  };
 
   const top_rated_onClick = () => {
-    setRestaurantList2(
-      restaurantList2.filter((restaurant) => restaurant.rate >= 4.0)
+    setfilteredrestaurantList(
+      restaurantList.filter((restaurant) => restaurant.data.avgRating >= 4.1)
     );
-  }; 
+  };
 
-  return (
+  const search = () => {
+    setfilteredrestaurantList(
+      restaurantList.filter((restaurant) =>
+        restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+      )
+    );
+  };
+
+  const updateInput = (e) => {
+    setSearchText(e.target.value);
+  };
+  // Lets create shimmer component untill the restaurantList is updated with called API data
+  // Read more about shimmer UI in the readme section
+  // if (restaurantList.length === 0) {
+  // Note that we don't have to write else statement for this if because below return statement will exit this functions execution context
+  // Always remember that body is react component which is expected to return only object
+  // And this is also called conditional rendering (redering based on conditions)
+  return filteredrestaurantList.length === 0 ? ( // Used ternary operator
     <div className="body">
       <div className="filters">
+      <input
+          type="search"
+          id="search"
+          name="search"
+          value={searchText}
+          onChange={updateInput}
+        ></input>
+        <button className="search" onClick={search}>
+          Search
+        </button>
         <button className="top-rated-filter-btn" onClick={top_rated_onClick}>
-          Top Rated Restaurants
+          Select Top Rated Restaurants
+        </button>
+      </div>
+      <div className="shimmer-container">
+        {/* Note that you cannot use for loop inside JSX as JSX expects inside of it to return object(react element) but for loop returns nothing just iterates while map can return values hence we can use map but not for loop inside JSX */}
+        <BodyShimmerUI />
+      </div>
+    </div>
+  ) : (
+    // }
+    <div className="body">
+      <div className="filters">
+        <input
+          type="search"
+          id="search"
+          name="search"
+          value={searchText}
+          onChange={updateInput}
+        ></input>
+        <button className="search" onClick={search}>
+          Search
+        </button>
+        <button className="top-rated-filter-btn" onClick={top_rated_onClick}>
+          Select Top Rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {restaurantList2.map((restaurant) => {
-          return <RestaurantCard key={restaurant.id} restaurant={restaurant} />;
-        })}
+        {filteredrestaurantList.map((restaurant) => (
+          <RestaurantCard key={restaurant.data.id} restaurant={restaurant} />
+        ))}
       </div>
     </div>
   );

@@ -2,14 +2,14 @@ import {RESTAURANT_CARD_CDN_URL} from "../utils/constants"
 
 const RestaurantCard = (props) => {
     const { restaurant } = props
-
+    
     const {
         name,
-        cuisine,
-        rate,
-        DeliveryTime,
-        costForTwo
-    } = restaurant
+        cuisines,
+        avgRating,
+        deliveryTime,
+        costForTwoString
+    } = restaurant?.data
 
     return (
         <div className="res-card">
@@ -20,11 +20,11 @@ const RestaurantCard = (props) => {
                 <img className="res-img" src={RESTAURANT_CARD_CDN_URL} alt="Restaurant image" />
             </div>
             <div className="res-menu-div">
-                <h4>{cuisine}</h4>
+                <h4>{cuisines.join(',')}</h4>
                 <div className="res-info-div">
-                    <h4>{rate}</h4>
-                    <h4>{DeliveryTime} min</h4>
-                    <h4>{costForTwo} For Two</h4>
+                    <h4>{avgRating}</h4>
+                    <h4>{deliveryTime} min</h4>
+                    <h4>{costForTwoString}</h4>
                 </div>
             </div>
         </div>
