@@ -1,12 +1,12 @@
 import RestaurantCard from "./RestaurantCard";
 import BodyShimmerUI from "./BodyShimmerUI";
+import mockRestaurantList from "../utils/mockData";
 import { useState, useEffect } from "react";
 
 const Body = () => {
   const [restaurantList, setrestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredrestaurantList, setfilteredrestaurantList] = useState([]);
-
   // We can show the cards info dynamically using below 2 approaches:
   // 1. Page loads --> call the API and once data is received --> render the component and display
   // 2. page loads --> components render --> Then call API --> once data is received then render the component again
@@ -22,20 +22,26 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING"
     );
     const fetchedRestaurants = await data.json();
-    setfilteredrestaurantList(fetchedRestaurants?.data?.cards[2]?.data?.data?.cards)
-    setrestaurantList(fetchedRestaurants?.data?.cards[2]?.data?.data?.cards); //?. is optional chaining - Explore about this
+    setfilteredrestaurantList(
+      fetchedRestaurants?.data?.cards[5]?.card?.card?.gridElements
+        ?.infoWithStyle?.restaurants
+    );
+    setrestaurantList(
+      fetchedRestaurants?.data?.cards[5]?.card?.card?.gridElements
+        ?.infoWithStyle?.restaurants
+    ); //?. is optional chaining - Explore about this
   };
 
   const top_rated_onClick = () => {
     setfilteredrestaurantList(
-      restaurantList.filter((restaurant) => restaurant.data.avgRating >= 4.1)
+      restaurantList.filter((restaurant) => restaurant.info.avgRating >= 4.1)
     );
   };
 
   const search = () => {
     setfilteredrestaurantList(
       restaurantList.filter((restaurant) =>
-        restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+        restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
       )
     );
   };
@@ -52,7 +58,7 @@ const Body = () => {
   return filteredrestaurantList.length === 0 ? ( // Used ternary operator
     <div className="body">
       <div className="filters">
-      <input
+        <input
           type="search"
           id="search"
           name="search"
@@ -91,7 +97,10 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredrestaurantList.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} restaurant={restaurant} />
+          <RestaurantCard
+            key={restaurant.info.id}
+            restaurant={restaurant.info}
+          />
         ))}
       </div>
     </div>

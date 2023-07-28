@@ -7,9 +7,9 @@ const RestaurantCard = (props) => {
         name,
         cuisines,
         avgRating,
-        deliveryTime,
-        costForTwoString
-    } = restaurant?.data
+        sla,
+        costForTwo
+    } = restaurant
 
     return (
         <div className="res-card">
@@ -20,11 +20,11 @@ const RestaurantCard = (props) => {
                 <img className="res-img" src={RESTAURANT_CARD_CDN_URL} alt="Restaurant image" />
             </div>
             <div className="res-menu-div">
-                <h4>{cuisines.join(',')}</h4>
+                <h4>{cuisines.join(",")}</h4>
                 <div className="res-info-div">
                     <h4>{avgRating}</h4>
-                    <h4>{deliveryTime} min</h4>
-                    <h4>{costForTwoString}</h4>
+                    <h4>{sla.deliveryTime} min</h4>
+                    <h4>{costForTwo}</h4>
                 </div>
             </div>
         </div>
