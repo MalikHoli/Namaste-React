@@ -3,3 +3,5 @@ export const RESTAURANT_CARD_CDN_URL = "https://media.istockphoto.com/id/1790854
 import logo from "../../logo2.jpg";
 
 export const LOGO_IMG = logo;
+
+export const RESTAURANT_MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=";

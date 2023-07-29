@@ -15,3 +15,14 @@
 - Now we have set up the configuration but we also need to provide this configuration to app and that is done using "RouterProvider"
 - "RouterProvider" is another COMPONENT (<RouterProvider />) provided by "react-router-dom" to provide the "createBrowserRouter" router configuration to our web app
 - refer to code to get the syntax of how to provide configuration to this "RouterProvider" component
+
+- Outlet one more such powerful hook provided by "react-router-dom" which acts like funnel (refer to code to get better understanding)
+
+- Link is one more power provided by "react-router-dom" which must be used like we use anchor tag
+- Never use anchor tag along with React because with anchor tag whole page gets reloaded if that links take you to different route where as Link will just update the required component and never reloads the page meaking things faster
+- The above phenomenon is known as single page appliaction (we are just changing the component but never reload the page)
+- We get all the code in one request from server and then React will just bring necessary components for routing and this is called client side routing
+
+- "Dynamic Rounting": This is providing the dynamic routs. In our example when we click on restaurant from restaurant card then each card should route to different URL to provide respective menu
+- We can provide dynamic route using /: notation (refer to code)
+- There is one more powered function (hook) provided by "react-router-dom" known as "useParams" which allow us to read this dynamic URL value inside the relevant functional component (refer to RestaurantMenuList component for more information)
